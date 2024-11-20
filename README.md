@@ -4,7 +4,7 @@ A web application for searching books, managing user subscriptions, and viewing 
 
 ## Description
 
-This project is a web application built with Flask and MongoDB. It allows users to search for books, subscribe to updates on specific books, and view their subscriptions. The application includes user authentication to manage user sessions and subscriptions.
+This project is a web application built with Flask and MongoDB. It allows users to search for books, subscribe to updates on specific books, and view their subscriptions. The application includes user authentication to manage user sessions and subscriptions. Passwords are securely hashed using Werkzeug.
 
 ## Installation
 
@@ -45,6 +45,7 @@ This project is a web application built with Flask and MongoDB. It allows users 
 ## Features
 
 - User registration and login
+- Password hashing for secure authentication
 - Book search using the Open Library API
 - Subscribe to updates on specific books
 - View subscribed books on the dashboard

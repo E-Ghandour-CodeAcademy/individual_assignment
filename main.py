@@ -3,6 +3,7 @@ from flask import Flask, request, render_template, redirect, url_for, Response
 from flask_pymongo import PyMongo
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from typing import Optional
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 
@@ -31,7 +32,8 @@ def register() -> Response:
         user = mongo.db.users.find_one({'_id': username})
         if user:
             return render_template('register.html', message="User already exists. Please log in.")
-        mongo.db.users.insert_one({'_id': username, 'password': password})
+        hashed_password = generate_password_hash(password)
+        mongo.db.users.insert_one({'_id': username, 'password': hashed_password})
         return redirect(url_for('login'))
     return render_template('register.html')
 
@@ -41,12 +43,11 @@ def login() -> Response:
         username: str = request.form['username']
         password: str = request.form['password']
         user = mongo.db.users.find_one({'_id': username})
-        if user:
-            user = mongo.db.users.find_one({'_id': username, 'password': password})
+        if user and check_password_hash(user['password'], password):
             login_user(User(username))
             return redirect(url_for('dashboard'))
         else:
-            return render_template('login.html', message="User does not exist. Please register.")
+            return render_template('login.html', message="Invalid username or password. Please try again.")
     return render_template('login.html')
 
 @app.route('/logout')
