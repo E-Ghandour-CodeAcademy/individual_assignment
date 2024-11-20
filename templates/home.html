@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Book Library</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <div class="container">
+      <img src='https://images.indianexpress.com/2022/01/E-library.jpg' alt="Library Image" class="library-image">
+      <h1>Search the Book Library</h1>
+      <form method="GET" action="/search">
+        <label for="query">Title: </label>
+        <input type="text" id="query" name="query" placeholder="Book or author..." aria-label="Search for books or authors"><br><br>
+        <label for="sort">Sort by Year:</label>
+        <select id="sort" name="sort" aria-label="Sort by year">
+          <option value="old">Ascending</option>
+          <option value="new">Descending</option>
+        </select>
+        <button type="submit">Search</button>
+      </form>
+      <div class="auth-buttons">
+        {% if current_user.is_authenticated %}
+          <button onclick="window.location.href='/dashboard'" class="register-button" aria-label="Dashboard">Dashboard</button>
+          <button onclick="window.location.href='/logout'" class="register-button" aria-label="Logout">Logout</button>
+        {% else %}
+          <button onclick="window.location.href='/login'" aria-label="Login">Login</button>
+          <button onclick="window.location.href='/register'" aria-label="Register">Register</button>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body class="dashboard-body">
+    <div class="dashboard-container">
+      <h1>Your Subscribed Books</h1>
+      <ul class="book-list">
+        {% for subscription in subscriptions %}
+          <li class="book-item">{{ subscription.title }}</li>
+        {% endfor %}
+      </ul>
+      <div class="button-container">
+        <button class="home-button" onclick="window.location.href='/'" aria-label="Go to Home">Home</button>
+      </div>
+      <div class="button-container"></div>
+        <button class="logout-button" onclick="window.location.href='/logout'" aria-label="Logout">Logout</button>
+        </div>
+    </div>
+  </body>
+</html>

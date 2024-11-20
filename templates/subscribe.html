@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Subscribe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body class="subscribe-body">
+    <div class="subscribe-container">
+      <h1>Subscribe for Updates</h1>
+      <p>You will be notified about any new additions to books with the title "{{ title }}".</p>
+      <form method="POST" action="/subscribe">
+        <label for="email">Email:</label>
+        <input type="hidden" name="title" value="{{ title }}">
+        <input type="email" id="email" name="email" required aria-label="Enter your email">
+        <button type="submit" class="subscribe-button" aria-label="Confirm Subscription">Confirm Subscription</button>
+      </form>
+      <button class="home-button" onclick="window.location.href='/'" aria-label="Go to Home">Home</button>
+    </div>
+  </body>
+</html>

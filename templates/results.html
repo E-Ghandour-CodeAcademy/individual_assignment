@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <div class="button-container">
+      <button class="home-button" onclick="window.location.href='/'" aria-label="Go to Home">Home</button>
+      <button class="subscribe-button" onclick="window.location.href='/subscribe?title={{ query }}'" aria-label="Subscribe to Book">Subscribe</button>
+      {% if current_user.is_authenticated %}
+        <button class="dashboard-button" onclick="window.location.href='/dashboard'" aria-label="Go to Dashboard">Dashboard</button>
+      {% endif %}
+    </div>
+    <div class="results-container">
+      <h1>Search Results</h1>
+      {{ html_content|safe }}
+    </div>
+  </body>
+</html>

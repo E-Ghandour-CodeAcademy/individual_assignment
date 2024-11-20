@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Thank You</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body class="thank-you-body">
+    <div class="popup" aria-label="Thank you message">
+      Thank you for subscribing! You will be redirected to the home page shortly.
+    </div>
+    <script>
+      setTimeout(function() {
+        window.location.href = '/';
+      }, 3000);
+    </script>
+  </body>
+</html>

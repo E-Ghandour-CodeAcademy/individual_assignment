@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body class="register-body">
+    <div class="register-container">
+      <h1>Register</h1>
+      {% if message %}
+        <p class="error-message">{{ message }}</p>
+      {% endif %}
+      <form method="POST" action="/register">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        {% if message %}
+        <button class="register-button" onclick="window.location.href='/login'" aria-label="Login">Go To Login</button>
+        {% else %}
+        <button type="submit" class="register-button">Register</button>
+        {% endif %}
+    </form>
+    </div>
+  </body>
+</html>
