@@ -10,7 +10,7 @@ This project is a web application built with Flask and MongoDB. It allows users 
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/E-Ghandour-CodeAcademy/individual_assignment.git
+    git clone https://github.com/E-Ghandour/individual_assignment.git
     cd book-library
     ```
 
