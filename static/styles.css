@@ -55,6 +55,12 @@ input, select, button {
   justify-content: space-between;
 }
 
+@media (max-width: 600px) { 
+  .button-container { 
+    flex-direction: column; /* Stack buttons vertically on small screens */ 
+    align-items: center; /* Center buttons horizontally */ 
+  }
+}
 .results-container {
   text-align: left;
   margin: 20px;
@@ -113,4 +119,8 @@ input, select, button {
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f9f9f9;
+}
+
+.flashes li { 
+  color: red;
 }
