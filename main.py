@@ -1,9 +1,10 @@
 import requests
-from flask import Flask, request, render_template, redirect, url_for, Response
+from flask import Flask, request, render_template, redirect, url_for, Response, flash
 from flask_pymongo import PyMongo
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from typing import Optional
 from werkzeug.security import generate_password_hash, check_password_hash
+import re
 
 app = Flask(__name__)
 
@@ -24,11 +25,27 @@ def load_user(user_id: str) -> Optional[User]:
         return User(user_id)
     return None
 
+def is_strong_password(password: str) -> bool:
+    if len(password) < 8: 
+        return False 
+    if not re.search(r"[A-Z]", password): 
+        return False 
+    if not re.search(r"[a-z]", password): 
+        return False 
+    if not re.search(r"[0-9]", password): 
+        return False 
+    if not re.search(r"[!@#$%^&*(),.?\":{}|<>]", password): 
+        return False 
+    return True
+
 @app.route('/register', methods=['GET', 'POST'])
 def register() -> Response:
     if request.method == 'POST':
         username: str = request.form['username']
         password: str = request.form['password']
+        if not is_strong_password(password): 
+            flash("Password must be at least 8 characters long and include uppercase and lowercase letters, numbers, and special characters.") 
+            return render_template('register.html')
         user = mongo.db.users.find_one({'_id': username})
         if user:
             return render_template('register.html', message="User already exists. Please log in.")
