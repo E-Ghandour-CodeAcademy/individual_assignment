@@ -14,9 +14,18 @@
       {% endif %}
       <form method="POST" action="/register">
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
+        <input type="email" id="username" name="username" required>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
+        {% with messages = get_flashed_messages() %} 
+          {% if messages %} 
+            <ul class="flashes"> 
+              {% for message in messages %} 
+                <li>{{ message }}</li> 
+              {% endfor %} 
+            </ul> 
+          {% endif %} 
+        {% endwith %}
         {% if message %}
         <button class="register-button" onclick="window.location.href='/login'" aria-label="Login">Go To Login</button>
         {% else %}
